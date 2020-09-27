@@ -1,0 +1,36 @@
+{
+  "name": "shorturl_mern",
+  "version": "1.0.0",
+  "description": "MERN-stack",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denismaltev/ShortURL_MERN.git"
+  },
+  "keywords": [
+    "mern",
+    "react",
+    "express",
+    "node",
+    "mongo"
+  ],
+  "author": "Denis Maltev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/denismaltev/ShortURL_MERN/issues"
+  },
+  "homepage": "https://github.com/denismaltev/ShortURL_MERN#readme",
+  "dependencies": {
+    "config": "^3.3.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.7"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
+  }
+}
