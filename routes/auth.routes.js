@@ -33,6 +33,24 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    // check if email exist
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "User or password is incorrect. Plaese try again" });
+    }
+
+    //check if the password is correct
+    const isPsswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPsswordCorrect) {
+      return res
+        .status(400)
+        .json({ message: "User or password is incorrect. Plaese try again" });
+    }
+
+    return res.status(200).json({ message: "You are logged in!" });
   } catch (error) {
     res.status(500).json({ massage: "ERROR: Something wrong !" });
   }
