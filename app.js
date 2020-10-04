@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 async function start() {
   try {
+    // mongoose
     await mongoose.connect(process.env.DATABASE_ATLAS_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -22,5 +23,8 @@ async function start() {
     process.exit(1);
   }
 }
+
+app.use(express.json({ extended: true })); // parser for using json req
+app.use("/api/auth", require("./routes/auth.routes"));
 
 start();
