@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 // REGISTRATION
@@ -90,7 +91,12 @@ router.post(
           .json({ message: "User or password is incorrect. Plaese try again" });
       }
 
-      return res.status(200).json({ message: "You are logged in!" });
+      // return to user JWT-token
+      const token = jwt.sign({ userId: user.id }, process.env.SECRET_TOKEN, {
+        expiresIn: "1h",
+      });
+      return res.status(200).json({ token, userId: user.id });
+      //return res.status(200).json({ message: "You are logged in!" });
     } catch (error) {
       res.status(500).json({ massage: "ERROR: Something wrong !" });
     }
