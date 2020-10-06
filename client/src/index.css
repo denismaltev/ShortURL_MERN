@@ -1,1 +1,15 @@
 @import "~materialize-css/dist/css/materialize.min.css";
+
+.auth-form {
+  margin: auto auto;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.waves-effect.waves-light.btn {
+  margin-right: 10px;
+}
+
+input.white-input {
+  color: white;
+}
