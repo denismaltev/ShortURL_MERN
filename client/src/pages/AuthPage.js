@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHttp } from "../hooks/http.hook";
 
 export const AuthPage = () => {
+  const [form, setForm] = useState({ email: "", password: "" });
+  const { loading, request } = useHttp();
+  const headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  };
+
+  const changeHandler = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
+
+  // Login OR Register depends on  action.
+  const clickHandler = async (action) => {
+    try {
+      const body = JSON.stringify(form);
+      const data = await request(`/api/auth/${action}`, "POST", body, headers);
+      console.log(data);
+    } catch (error) {
+      console.log("Error: ", error.message);
+    }
+  };
+
   return (
     <div>
       <h1>URL Shortener</h1>
@@ -15,6 +38,7 @@ export const AuthPage = () => {
                 name="email"
                 className="white-input"
                 required
+                onChange={changeHandler}
               />
               <label htmlFor="email">Email</label>
             </div>
@@ -27,14 +51,29 @@ export const AuthPage = () => {
                 name="password"
                 className="white-input"
                 required
+                onChange={changeHandler}
               />
               <label htmlFor="password">Password</label>
             </div>
           </div>
         </div>
         <div className="card-action">
-          <button className="waves-effect waves-light btn">Sign In</button>
-          <button className="waves-effect waves-light btn">Sign Up</button>
+          <button
+            className="waves-effect waves-light btn"
+            onClick={() => {
+              clickHandler("login");
+            }}
+          >
+            Sign In
+          </button>
+          <button
+            className="waves-effect waves-light btn"
+            onClick={() => {
+              clickHandler("register");
+            }}
+          >
+            Sign Up
+          </button>
         </div>
       </div>
     </div>
