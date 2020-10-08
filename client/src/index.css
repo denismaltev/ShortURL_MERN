@@ -13,3 +13,8 @@
 input.white-input {
   color: white;
 }
+
+/* NavBar */
+.nav-wrapper {
+  padding: 0 20px;
+}
