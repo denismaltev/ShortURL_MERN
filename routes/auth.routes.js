@@ -24,7 +24,7 @@ router.post(
       const validationErrors = validationResult(req);
       if (!validationErrors.isEmpty()) {
         return res.status(400).json({
-          massage: "Incorrect registration data",
+          message: "Incorrect registration data",
           errors: validationErrors.array(),
         });
       }
@@ -64,12 +64,11 @@ router.post(
   ],
   async (req, res) => {
     try {
-      //console.log(req.body);
       // Validation results
       const validationErrors = validationResult(req);
       if (!validationErrors.isEmpty()) {
         return res.status(400).json({
-          massage: "Incorrect login data",
+          message: "Incorrect login data",
           errors: validationErrors.array(),
         });
       }
@@ -89,17 +88,19 @@ router.post(
       if (!isPsswordCorrect) {
         return res
           .status(400)
-          .json({ message: "User or password is incorrect. Plaese try again" });
+          .json({ message: "User or password is incorrect. Please try again" });
       }
 
       // return to user JWT-token
       const token = jwt.sign({ userId: user.id }, process.env.SECRET_TOKEN, {
         expiresIn: "1h",
       });
-      return res.status(200).json({ token, userId: user.id });
+      return res
+        .status(200)
+        .json({ message: "Welcome!", token, userId: user.id });
       //return res.status(200).json({ message: "You are logged in!" });
     } catch (error) {
-      res.status(500).json({ massage: "ERROR: Something wrong !" });
+      res.status(500).json({ message: "ERROR: Something wrong !" });
     }
   }
 );

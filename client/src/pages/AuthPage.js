@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHttp } from "../hooks/http.hook";
+import { useMessage } from "../hooks/message.hook";
 
 export const AuthPage = () => {
   const [form, setForm] = useState({ email: "", password: "" });
-  const { loading, request } = useHttp();
+  const { loading, request, error, clearError } = useHttp();
+  const message = useMessage();
   const headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
   };
+
+  useEffect(() => {
+    message(error);
+    clearError();
+  }, [error, message, clearError]);
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -18,9 +25,10 @@ export const AuthPage = () => {
     try {
       const body = JSON.stringify(form);
       const data = await request(`/api/auth/${action}`, "POST", body, headers);
+      message(data.message);
       console.log(data);
     } catch (error) {
-      console.log("Error: ", error.message);
+      //console.log("Error: ", error.message);
     }
   };
 
@@ -63,6 +71,7 @@ export const AuthPage = () => {
             onClick={() => {
               clickHandler("login");
             }}
+            disabled={loading}
           >
             Sign In
           </button>
@@ -71,6 +80,7 @@ export const AuthPage = () => {
             onClick={() => {
               clickHandler("register");
             }}
+            disabled={loading}
           >
             Sign Up
           </button>
