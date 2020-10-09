@@ -28,7 +28,7 @@ export const AuthPage = () => {
       const body = JSON.stringify(form);
       const data = await request(`/api/auth/${action}`, "POST", body, headers);
       message(data.message);
-      console.log(data);
+      //console.log(data);
       auth.login(data.token, data.userId);
     } catch (error) {
       //console.log("Error: ", error.message);
