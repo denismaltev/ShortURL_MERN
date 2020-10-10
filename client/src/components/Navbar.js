@@ -7,7 +7,7 @@ export const Navbar = () => {
   return (
     <nav>
       <div className="nav-wrapper teal darken-1">
-        <a href="#" className="brand-logo">
+        <a href="/" className="brand-logo">
           URL Shortener
         </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
