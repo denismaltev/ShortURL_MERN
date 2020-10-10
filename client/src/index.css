@@ -1,5 +1,9 @@
 @import "~materialize-css/dist/css/materialize.min.css";
 
+.container {
+  min-width: 300px;
+}
+
 .auth-form {
   margin: auto auto;
   min-width: 250px;
@@ -17,4 +21,13 @@ input.white-input {
 /* NavBar */
 .nav-wrapper {
   padding: 0 20px;
+}
+
+/* Link input form */
+.link-input {
+  margin: 100px 20px;
+}
+
+.link-submit-button {
+  margin: 15px;
 }
