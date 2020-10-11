@@ -2,10 +2,11 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
+import { Loader } from "../components/Loader";
 
 export const DetailPage = () => {
   const { id } = useParams();
-  const { request } = useHttp();
+  const { request, loading } = useHttp();
   const auth = useContext(AuthContext);
   const [link, setLink] = useState({});
 
@@ -28,6 +29,10 @@ export const DetailPage = () => {
   useEffect(() => {
     getLinkById();
   }, [getLinkById]);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div>
