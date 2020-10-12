@@ -1,5 +1,16 @@
 @import "~materialize-css/dist/css/materialize.min.css";
 
+/* Text style Start*/
+.center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+/* Text style End*/
+
 .container {
   min-width: 300px;
 }
