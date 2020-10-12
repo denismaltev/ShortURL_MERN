@@ -9,6 +9,11 @@
   font-weight: bold;
 }
 
+.info {
+  font-size: 30px;
+  color: #00796b;
+}
+
 /* Text style End*/
 
 .container {

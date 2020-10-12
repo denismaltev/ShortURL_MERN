@@ -22,7 +22,9 @@ export const LinksList = ({ links }) => {
               <td>{link.originalUrl}</td>
               <td>{link.shortUrl}</td>
               <td>
-                <Link to={`/detail/${link._id}`}>Open</Link>
+                <Link to={`/detail/${link._id}`}>
+                  <i className="material-icons info">info_outline</i>
+                </Link>
               </td>
             </tr>
           );
