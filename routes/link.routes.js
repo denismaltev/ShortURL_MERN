@@ -56,10 +56,28 @@ router.get("/:id", auth, async (req, res) => {
     //const link = await Link.findById(req.params.id);
 
     // find the link by id ONLY for current user
-    const link = await Link.find({_id: req.params.id, owner});
+    const link = await Link.find({ _id: req.params.id, owner });
     return res.status(200).json(link);
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "ERROR: Something went wrong. Try again." });
+  }
+});
+
+// DELETE link by id
+router.delete("/:id", auth, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const success = await Link.findByIdAndDelete(id);
+    if (success) {
+      return res.status(200).json({ status: 204, message: "Deleted" });
+    } else {
+      return res.status(404).json({ status: 404, message: "Not found" });
+    }
+  } catch (error) {
+    console.log(error.message);
     res
       .status(500)
       .json({ message: "ERROR: Something went wrong. Try again." });

@@ -5,9 +5,14 @@ import { Loader } from "../components/Loader";
 import { LinksList } from "../components/LinksList";
 
 export const LinksPage = () => {
+  const [updatePage, setUpdatePage] = useState(false);
   const [links, setLinks] = useState();
   const { token } = useContext(AuthContext);
   const { request, loading } = useHttp();
+
+  const updateLinksPage = () => {
+    setUpdatePage(true);
+  };
 
   // GET all links of current user
   const getAllUserLinks = useCallback(async () => {
@@ -27,10 +32,11 @@ export const LinksPage = () => {
 
   useEffect(() => {
     getAllUserLinks();
-  }, [getAllUserLinks]);
+    setUpdatePage(false);
+  }, [getAllUserLinks, updatePage]);
 
   if (loading) {
     return <Loader />;
   }
-  return <LinksList links={links} />;
+  return <LinksList links={links} updateLinksPage={updateLinksPage} />;
 };

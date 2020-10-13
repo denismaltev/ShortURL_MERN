@@ -9,9 +9,11 @@
   font-weight: bold;
 }
 
-.info {
+.icon {
   font-size: 30px;
   color: #00796b;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 /* Text style End*/
