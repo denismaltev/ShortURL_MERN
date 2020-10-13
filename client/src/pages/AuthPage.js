@@ -8,10 +8,6 @@ export const AuthPage = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const { loading, request, error, clearError } = useHttp();
   const message = useMessage();
-  const headers = {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  };
 
   useEffect(() => {
     message(error);
@@ -26,7 +22,7 @@ export const AuthPage = () => {
   const clickHandler = async (action) => {
     try {
       const body = JSON.stringify(form);
-      const data = await request(`/api/auth/${action}`, "POST", body, headers);
+      const data = await request(`/api/auth/${action}`, "POST", body);
       message(data.message);
       //console.log(data);
       auth.login(data.token, data.userId);

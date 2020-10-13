@@ -1,30 +1,22 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
 import { Loader } from "../components/Loader";
 
 export const DetailPage = () => {
   const { id } = useParams();
   const { request, loading } = useHttp();
-  const auth = useContext(AuthContext);
   const [link, setLink] = useState({});
 
   // GET by ID only once
   const getLinkById = useCallback(async () => {
     try {
-      const headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + auth.token, // get token from context
-      };
-
-      const [result] = await request(`/api/link/${id}`, "GET", null, headers);
+      const [result] = await request(`/api/link/${id}`, "GET", null);
       setLink(result);
     } catch (error) {
       //console.log(error.message);
     }
-  }, [id, auth, request]);
+  }, [id, request]);
 
   useEffect(() => {
     getLinkById();

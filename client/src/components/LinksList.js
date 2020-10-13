@@ -1,28 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
 import { useMessage } from "../hooks/message.hook";
 
 export const LinksList = ({ links, updateLinksPage }) => {
-  const { token } = useContext(AuthContext);
   const { request } = useHttp();
   const message = useMessage();
 
   const deleteLink = async (link_id) => {
     try {
-      const headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      };
-
-      const response = await request(
-        `/api/link/${link_id}`,
-        "DELETE",
-        null,
-        headers
-      );
+      const response = await request(`/api/link/${link_id}`, "DELETE", null);
 
       // If url deleted send message to the user and refresh the parent - LinksPage
       if (response.status === 204) {

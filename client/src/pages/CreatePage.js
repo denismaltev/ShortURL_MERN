@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import React, { useEffect, useState } from "react";
 import { useHttp } from "../hooks/http.hook";
 import { useMessage } from "../hooks/message.hook";
 import { useHistory } from "react-router-dom";
@@ -7,7 +6,6 @@ import { useHistory } from "react-router-dom";
 export const CreatePage = () => {
   const [link, setLink] = useState("");
   const { loading, request, error, clearError } = useHttp();
-  const auth = useContext(AuthContext);
   const message = useMessage();
   const history = useHistory();
 
@@ -20,19 +18,9 @@ export const CreatePage = () => {
   const clickHandler = async () => {
     try {
       const body = JSON.stringify({ originalUrl: link });
-      const headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + auth.token,
-      };
 
       // POST request to server
-      const response = await request(
-        "api/link/generate",
-        "POST",
-        body,
-        headers
-      );
+      const response = await request("api/link/generate", "POST", body);
 
       // check if URL was created and redirect to the detail page
       if (response._id) {

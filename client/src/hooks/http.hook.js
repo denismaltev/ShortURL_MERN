@@ -1,11 +1,20 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export const useHttp = () => {
+  const { token } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const request = useCallback(
-    async (url, method = "GET", body = null, headers = {}) => {
+    async (url, method = "GET", body = null) => {
+      // Set header with JWT-token for request
+      const headers = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+
       try {
         setLoading(true);
         const response = await fetch(url, { method, body, headers });
@@ -20,7 +29,7 @@ export const useHttp = () => {
         setError(error.message);
       }
     },
-    []
+    [token]
   );
 
   const clearError = () => {
