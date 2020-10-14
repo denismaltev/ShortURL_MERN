@@ -1,5 +1,9 @@
 @import "~materialize-css/dist/css/materialize.min.css";
 
+#root {
+  min-width: 600px;
+}
+
 /* Text style Start*/
 .center {
   text-align: center;
@@ -19,7 +23,8 @@
 /* Text style End*/
 
 .container {
-  min-width: 300px;
+  min-width: 500px;
+  width: 100%;
 }
 
 .auth-form {
@@ -41,17 +46,52 @@ input.white-input {
   padding: 0 20px;
 }
 
-/* Link input form */
+/* Link input form Start*/
 .link-input {
-  margin: 100px 20px;
+  margin: 100px auto;
+  max-width: 500px;
 }
 
 .link-submit-button {
   margin: 15px;
 }
 
+/* Link input form end */
+
 .loader {
   position: absolute;
   top: 45%;
   left: 45%;
 }
+
+/* LinksPage table  start */
+
+table.links-list {
+  padding: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.links-list th {
+  text-align: center;
+}
+
+td.icons {
+  min-width: 100px;
+}
+
+td.original-url {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  max-width: 200px;
+}
+
+td.short-url {
+  padding: 0 10px;
+  width: 100%;
+}
+
+/* LinksPage table end */

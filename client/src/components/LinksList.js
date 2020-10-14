@@ -25,7 +25,7 @@ export const LinksList = ({ links, updateLinksPage }) => {
     return <p className="center bold">No links yet.</p>;
   }
   return (
-    <table className="striped">
+    <table className="striped links-list">
       <thead>
         <tr>
           <th>N</th>
@@ -38,7 +38,7 @@ export const LinksList = ({ links, updateLinksPage }) => {
           return (
             <tr key={link._id}>
               <td>{index + 1}</td>
-              <td>
+              <td className="original-url">
                 <a
                   href={link.originalUrl}
                   target="_blank"
@@ -47,7 +47,7 @@ export const LinksList = ({ links, updateLinksPage }) => {
                   {link.originalUrl}
                 </a>
               </td>
-              <td>
+              <td className="short-url">
                 <a
                   href={link.shortUrl}
                   target="_blank"
@@ -56,7 +56,7 @@ export const LinksList = ({ links, updateLinksPage }) => {
                   {link.shortUrl}
                 </a>
               </td>
-              <td>
+              <td className="icons">
                 <Link to={`/detail/${link._id}`}>
                   <i className="material-icons icon">info_outline</i>
                 </Link>
