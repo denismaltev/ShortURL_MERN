@@ -21,7 +21,7 @@ export const CreatePage = () => {
       const body = JSON.stringify({ originalUrl: link });
 
       // POST request to server
-      const response = await request("api/link/generate", "POST", body);
+      const response = await request("api/link", "POST", body);
 
       // check if URL was created and redirect to the detail page
       if (response._id) {

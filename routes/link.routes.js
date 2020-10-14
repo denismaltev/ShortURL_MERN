@@ -3,11 +3,19 @@ const router = Router();
 const Link = require("../models/Link");
 const auth = require("../middleware/auth.middleware");
 const shortid = require("shortid");
+const { isURL } = require("validator");
 
-router.post("/generate", auth, async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
     const originalUrl = req.body.originalUrl;
     const owner = req.user.userId;
+
+    // check if url is valid URL address
+    if (!isURL(originalUrl)) {
+      return res
+        .status(400)
+        .json({ message: "Looks like your link is NOT URL" });
+    }
 
     // check if current user already has original URL.
     const existing = await Link.find({ owner }).findOne({ originalUrl });
