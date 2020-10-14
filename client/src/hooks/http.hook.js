@@ -8,25 +8,27 @@ export const useHttp = () => {
 
   const request = useCallback(
     async (url, method = "GET", body = null) => {
-      // Set header with JWT-token for request
-      const headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      };
-
       try {
+        // for loader animation
         setLoading(true);
+
+        // Set header with JWT-token for request
+        const headers = {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        };
+
         const response = await fetch(url, { method, body, headers });
         const data = await response.json();
-        setLoading(false);
         if (!response.ok) {
           throw new Error(data.message || "ERROR: Something went wrong!");
         }
+        setLoading(false);
         return data;
       } catch (error) {
-        setLoading(false);
         setError(error.message);
+        setLoading(false);
       }
     },
     [token]
