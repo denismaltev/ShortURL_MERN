@@ -38,8 +38,12 @@ export const LinksList = ({ links, updateLinksPage }) => {
           return (
             <tr key={link._id}>
               <td>{index + 1}</td>
-              <td>{link.originalUrl}</td>
-              <td>{link.shortUrl}</td>
+              <td>
+                <a href={link.originalUrl}>{link.originalUrl}</a>
+              </td>
+              <td>
+                <a href={link.shortUrl}>{link.shortUrl}</a>
+              </td>
               <td>
                 <Link to={`/detail/${link._id}`}>
                   <i className="material-icons icon">info_outline</i>

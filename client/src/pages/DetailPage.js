@@ -29,10 +29,14 @@ export const DetailPage = () => {
   return (
     <div>
       <h1>URL</h1>
-      <p>Original: {link.originalUrl}</p>
-      <p>Short: {link.shortUrl}</p>
+      <p>
+        Original: <a href={link.originalUrl}>{link.originalUrl}</a>
+      </p>
+      <p>
+        Short: <a href={link.shortUrl}>{link.shortUrl}</a>
+      </p>
       <p>Number of clicks: {link.clicks}</p>
-      <p>Creation date: {link.date}</p>
+      <p>Creation date: {new Date(parseInt(link.date)).toLocaleDateString()}</p>
     </div>
   );
 };
