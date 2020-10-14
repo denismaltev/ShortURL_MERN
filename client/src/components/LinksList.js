@@ -39,10 +39,22 @@ export const LinksList = ({ links, updateLinksPage }) => {
             <tr key={link._id}>
               <td>{index + 1}</td>
               <td>
-                <a href={link.originalUrl}>{link.originalUrl}</a>
+                <a
+                  href={link.originalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.originalUrl}
+                </a>
               </td>
               <td>
-                <a href={link.shortUrl}>{link.shortUrl}</a>
+                <a
+                  href={link.shortUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.shortUrl}
+                </a>
               </td>
               <td>
                 <Link to={`/detail/${link._id}`}>
