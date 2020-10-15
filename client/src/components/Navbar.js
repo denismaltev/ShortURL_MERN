@@ -8,7 +8,7 @@ export const Navbar = () => {
     <nav>
       <div className="nav-wrapper teal darken-1">
         <a href="/" className="brand-logo">
-          URL Shortener
+          <img className="logo" src={require("../images/short-url-logo.jpg")} />
         </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li>

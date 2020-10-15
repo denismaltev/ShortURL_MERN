@@ -4,6 +4,10 @@
   min-width: 600px;
 }
 
+img.logo {
+  width: 300px;
+}
+
 /* Text style Start*/
 .center {
   text-align: center;
