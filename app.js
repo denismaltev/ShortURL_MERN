@@ -27,5 +27,6 @@ async function start() {
 app.use(express.json({ extended: true })); // parser for using json req
 app.use("/api/auth", require("./routes/auth.routes"));
 app.use("/api/link", require("./routes/link.routes"));
+app.use("/t", require("./routes/redirect.routes"));
 
 start();
