@@ -33,8 +33,8 @@ export const AuthPage = () => {
 
   return (
     <div>
-      <h1>URL Shortener</h1>
       <div className="auth-form card blue-grey darken-1">
+        <img className="logo" src={require("../images/short-url-header.jpg")} />
         <div className="card-content white-text">
           <span className="card-title">Authorization</span>
           <div className="row">

@@ -27,7 +27,7 @@ export const DetailPage = () => {
   }
 
   return (
-    <div>
+    <div className="detail">
       <h1>URL</h1>
       <p>
         Original:{" "}

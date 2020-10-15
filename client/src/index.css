@@ -4,6 +4,11 @@
   min-width: 600px;
 }
 
+.main-header {
+  color: white;
+  text-align: center;
+}
+
 img.logo {
   width: 300px;
 }
@@ -32,7 +37,9 @@ img.logo {
 }
 
 .auth-form {
+  padding: 10px;
   margin: auto auto;
+  margin-top: 100px;
   min-width: 250px;
   max-width: 500px;
 }
@@ -48,6 +55,11 @@ input.white-input {
 /* NavBar */
 .nav-wrapper {
   padding: 0 20px;
+}
+
+.detail {
+  margin: 0 auto;
+  text-align: center;
 }
 
 /* Link input form Start*/
