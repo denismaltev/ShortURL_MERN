@@ -86,6 +86,10 @@ input.white-input {
   max-width: 400px;
 }
 
+#search {
+  max-width: 280px;
+}
+
 .input-field.search {
   border: 1px solid #bdbdbd;
   border-radius: 15px;
@@ -95,6 +99,7 @@ input.white-input {
 .material-icons.search {
   margin-top: 7px;
 }
+
 /* Link search form end */
 
 /* LinksPage table  start */

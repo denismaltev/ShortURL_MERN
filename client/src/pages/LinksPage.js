@@ -7,6 +7,7 @@ export const LinksPage = () => {
   const [updatePage, setUpdatePage] = useState(false);
   const [allUserLinks, setAllUserLinks] = useState();
   const [filteredLinks, setFilteredLinks] = useState();
+  const [searchQuery, setSearchQuery] = useState("");
   const { request, loading } = useHttp();
 
   const updateLinksPage = () => {
@@ -26,10 +27,17 @@ export const LinksPage = () => {
 
   const linksFilter = (event) => {
     const searchQuery = event.target.value;
+    setSearchQuery(searchQuery);
     const filteredResult = allUserLinks.filter((link) =>
       link.originalUrl.includes(searchQuery)
     );
     setFilteredLinks(filteredResult);
+  };
+
+  // Clear search form
+  const clearForm = () => {
+    setSearchQuery("");
+    setFilteredLinks(allUserLinks);
   };
 
   useEffect(() => {
@@ -45,11 +53,19 @@ export const LinksPage = () => {
       <div className="nav-wrapper">
         <form className="list-page-search-form">
           <div className="input-field search">
-            <input id="search" type="search" required onChange={linksFilter} />
+            <input
+              id="search"
+              type="search"
+              required
+              value={searchQuery}
+              onChange={linksFilter}
+            />
             <label className="label-icon" htmlFor="search">
               <i className="material-icons search">search</i>
             </label>
-            <i className="material-icons search">close</i>
+            <i className="material-icons search" onClick={clearForm}>
+              close
+            </i>
           </div>
         </form>
       </div>
