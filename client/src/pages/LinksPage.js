@@ -5,7 +5,8 @@ import { LinksList } from "../components/LinksList";
 
 export const LinksPage = () => {
   const [updatePage, setUpdatePage] = useState(false);
-  const [links, setLinks] = useState();
+  const [allUserLinks, setAllUserLinks] = useState();
+  const [filteredLinks, setFilteredLinks] = useState();
   const { request, loading } = useHttp();
 
   const updateLinksPage = () => {
@@ -16,11 +17,20 @@ export const LinksPage = () => {
   const getAllUserLinks = useCallback(async () => {
     try {
       const result = await request("/api/link", "GET", null);
-      setLinks(result);
+      setAllUserLinks(result);
+      setFilteredLinks(result);
     } catch (error) {
       console.log(error.message);
     }
   }, [request]);
+
+  const linksFilter = (event) => {
+    const searchQuery = event.target.value;
+    const filteredResult = allUserLinks.filter((link) =>
+      link.originalUrl.includes(searchQuery)
+    );
+    setFilteredLinks(filteredResult);
+  };
 
   useEffect(() => {
     getAllUserLinks();
@@ -30,5 +40,20 @@ export const LinksPage = () => {
   if (loading) {
     return <Loader />;
   }
-  return <LinksList links={links} updateLinksPage={updateLinksPage} />;
+  return (
+    <>
+      <div className="nav-wrapper">
+        <form className="list-page-search-form">
+          <div className="input-field search">
+            <input id="search" type="search" required onChange={linksFilter} />
+            <label className="label-icon" htmlFor="search">
+              <i className="material-icons search">search</i>
+            </label>
+            <i className="material-icons search">close</i>
+          </div>
+        </form>
+      </div>
+      <LinksList links={filteredLinks} updateLinksPage={updateLinksPage} />
+    </>
+  );
 };

@@ -80,6 +80,23 @@ input.white-input {
   left: 45%;
 }
 
+/* Link search form start */
+.list-page-search-form {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.input-field.search {
+  border: 1px solid #bdbdbd;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.material-icons.search {
+  margin-top: 7px;
+}
+/* Link search form end */
+
 /* LinksPage table  start */
 
 table.links-list {
