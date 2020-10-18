@@ -34,7 +34,11 @@ export const AuthPage = () => {
   return (
     <div>
       <div className="auth-form card blue-grey darken-1">
-        <img className="logo" src={require("../images/short-url-header.jpg")} />
+        <img
+          alt="short-url-logo"
+          className="logo"
+          src={require("../images/short-url-header.jpg")}
+        />
         <div className="card-content white-text">
           <span className="card-title">Authorization</span>
           <div className="row">
