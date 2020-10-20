@@ -2,7 +2,7 @@ import { useState, useCallback, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 export const useHttp = () => {
-  const { token } = useContext(AuthContext);
+  const { token, logout } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -21,6 +21,15 @@ export const useHttp = () => {
 
         const response = await fetch(url, { method, body, headers });
         const data = await response.json();
+
+        // checking if user is authorized
+        if (response.status === 401) {
+          setLoading(false);
+          logout();
+          return 0;
+        }
+
+        // cheking if the answer isn't OK code=200, send to user error-message using catch block.
         if (!response.ok) {
           throw new Error(data.message || "ERROR: Something went wrong!");
         }
@@ -31,7 +40,7 @@ export const useHttp = () => {
         setLoading(false);
       }
     },
-    [token]
+    [token, logout]
   );
 
   const clearError = () => {

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useHttp } from "../hooks/http.hook";
 import { Loader } from "../components/Loader";
 import { LinksList } from "../components/LinksList";
@@ -9,6 +9,7 @@ export const LinksPage = () => {
   const [filteredLinks, setFilteredLinks] = useState();
   const [searchQuery, setSearchQuery] = useState("");
   const { request, loading } = useHttp();
+  const isMounted = useRef(true);
 
   const updateLinksPage = () => {
     setUpdatePage(true);
@@ -18,8 +19,10 @@ export const LinksPage = () => {
   const getAllUserLinks = useCallback(async () => {
     try {
       const result = await request("/api/link", "GET", null);
-      setAllUserLinks(result);
-      setFilteredLinks(result);
+      if (isMounted.current) {
+        setAllUserLinks(result);
+        setFilteredLinks(result);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -43,6 +46,11 @@ export const LinksPage = () => {
   useEffect(() => {
     getAllUserLinks();
     setUpdatePage(false);
+
+    // cancel subscriptions if the component unmount
+    return () => {
+      isMounted.current = false;
+    };
   }, [getAllUserLinks, updatePage]);
 
   if (loading) {
