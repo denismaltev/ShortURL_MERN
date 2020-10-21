@@ -19,6 +19,7 @@ export const useHttp = () => {
           Authorization: `Bearer ${token}`,
         };
 
+        console.log(`LOG: ${method}-request to: ${url}`);
         const response = await fetch(url, { method, body, headers });
         const data = await response.json();
 

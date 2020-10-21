@@ -5,7 +5,7 @@ import { useMessage } from "../hooks/message.hook";
 
 export const LinksList = ({ links, updateLinksPage }) => {
   const { request } = useHttp();
-  const message = useMessage();
+  const message = useMessage("");
 
   const deleteLink = async (link_id) => {
     try {
@@ -14,7 +14,7 @@ export const LinksList = ({ links, updateLinksPage }) => {
       // If url deleted send message to the user and refresh the parent - LinksPage
       if (response.status === 204) {
         message(response.message);
-        updateLinksPage(true);
+        updateLinksPage();
       }
     } catch (error) {
       console.log(error.message);

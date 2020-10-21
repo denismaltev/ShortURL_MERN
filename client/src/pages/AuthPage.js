@@ -10,7 +10,8 @@ export const AuthPage = () => {
   const message = useMessage();
 
   useEffect(() => {
-    message(error);
+    // 1-st argument is error-message, 2-nd argument works like flag to choose message color.
+    message(error, error);
     clearError();
   }, [error, message, clearError]);
 

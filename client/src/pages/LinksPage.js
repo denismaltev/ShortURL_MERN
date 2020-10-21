@@ -5,8 +5,8 @@ import { LinksList } from "../components/LinksList";
 
 export const LinksPage = () => {
   const [updatePage, setUpdatePage] = useState(false);
-  const [allUserLinks, setAllUserLinks] = useState();
-  const [filteredLinks, setFilteredLinks] = useState();
+  const [allUserLinks, setAllUserLinks] = useState([]);
+  const [filteredLinks, setFilteredLinks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const { request, loading } = useHttp();
   const isMounted = useRef(true);
@@ -44,8 +44,9 @@ export const LinksPage = () => {
   };
 
   useEffect(() => {
-    getAllUserLinks();
+    isMounted.current = true;
     setUpdatePage(false);
+    getAllUserLinks();
 
     // cancel subscriptions if the component unmount
     return () => {
