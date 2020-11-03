@@ -7,14 +7,8 @@ export const Navbar = () => {
 
   // Hamburger button action (materialize)
   useEffect(() => {
-    document.addEventListener(
-      "DOMContentLoaded",
-      function () {
-        var elems = document.querySelectorAll(".sidenav");
-        window.M.Sidenav.init(elems, {});
-      },
-      []
-    );
+    var elems = document.querySelectorAll(".sidenav");
+    window.M.Sidenav.init(elems, {});
   });
 
   return (
